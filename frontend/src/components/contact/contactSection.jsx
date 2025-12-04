@@ -12,79 +12,129 @@ export default function ContactSection() {
     message: "",
   })
 
-  const handleChange = (e) =>
-    setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-    const templateParams = {
-      user_name: `${form.firstName} ${form.lastName}`,
-      user_email: form.email,
-      user_phone: form.phone,
-      message: form.message,
-    };
-
-    try{
-      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-      alert('Email sent successfully!');
-      setForm({ firstName: "", lastName: "", email: "", phone: "", message: "" })
-    }catch(error){
-      console.error('Email send error:', error);
-      alert('Error sending email. Please try again.')
-    }
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      {
+        ...form,
+        to_email: "denverma7@gmail.com",
+      },
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+    )
+    .then(() => {
+      alert("Thank you for your message! We will get back to you soon.")
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      })
+    })
+    .catch((error) => {
+      alert('There was and error sending your message. Please try again later.')
+      console.log(error)
+    })
   };
 
 return (
     <section className="bg-[#fdf8e9] py-10">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 mt-15 rounded-xl overflow-hidden px-4  sm:px-2">
-        {/* Left Side - Contact Form */}
-        <div className="bg-green-950 text-white p-10 flex flex-col rounded-t-3xl rounded-b-none md:rounded-l-3xl md:rounded-r-none justify-start gap-8">
-          <p className="uppercase text-sm tracking-widest mb-2 flex items-center gap-2">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 mt-15 rounded-xl overflow-hidden px-2 sm:px-1">
+        {/* Left Side - Contact details */}
+        <div className="bg-green-950 text-white p-8 flex flex-col rounded-t-3xl rounded-b-none md:rounded-l-3xl md:rounded-r-none justify-start gap-8">
+          <p className="uppercase text-sm tracking-widest flex items-center gap-2" data-aos="fade-up" data-aos-delay="500">
             <span className="text-lg">✚</span> Contact Us
           </p>
-          <h2 className="text-5xl  mb-8">
+          <h2 className="text-4xl mb-2" data-aos="fade-up" data-aos-delay="600">
             Get in Touch With Nature Foot Care & Ayurvedic Wellness
           </h2>
-          <p className="mb-8 text-gray-200">
+          <p className="text-gray-200 text-sm" data-aos="fade-up" data-aos-delay="700">
             At Nature Foot Care and Ayurvedic Wellness, we’re here to guide you
             on your path to natural healing. Contact us for bookings, inquiries,
             or wellness advice
           </p>
 
-          <form 
+          <div>
+            <div className='flex items-start gap-4 font-[600]' data-aos="fade-up" data-aos-delay="700">
+              <div className="flex items-center justify-center w-[48px] h-[43px] bg-white rounded-[10px] mb-2 p-2">
+                <MapPin size={24} className="text-[#09283B]" />
+              </div>
+              <div className="flex flex-col mb-10">
+                <p className='text-[14px]'>Visit Us</p>
+                <p className='text-[14px]'>No. 50/9, B/G/1, Collingwood Housing Scheme,<br /> Collingwood Place, Wellawatta, Colombo-6</p>
+                <p className='text-[12px] text-gray-400'>Schedule an appointment</p>
+              </div>
+            </div>
+            <div className='flex items-start gap-4 font-[600]' data-aos="fade-up" data-aos-delay="800">
+              <div className="flex items-center justify-center w-[48px] h-[43px] bg-white rounded-[10px] mb-2 p-2">
+                <Phone size={20} className="text-[#09283B]" />
+              </div>
+              <div className="flex flex-col mb-10">
+                <p className='text-[14px]'>Call Us</p>
+                <p className='text-[14px]'>+94 74 261 0334</p>
+                <p className='text-[12px] text-gray-400'>Monday to Friday, 9:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+            <div className='flex items-start gap-4 font-[600]' data-aos="fade-up" data-aos-delay="900">
+              <div className="flex items-center justify-center w-[48px] h-[43px] bg-white rounded-[10px] mb-2 p-2">
+                <Mail size={20} className="text-[#09283B]" />
+              </div>
+              <div className="flex flex-col">
+                <p className='text-[14px]'>Email Us</p>
+                <p className='text-[14px]'>ayurvedafootcarenewnature@gmail.com</p>
+                <p className='text-[12px] text-gray-400'>Send us your questions anytime</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side - Contact Info Card */}
+        <form
             onSubmit={handleSubmit}
-            className="bg-white text-gray-800 rounded-lg shadow p-6 space-y-4"
+            className="bg-white text-gray-800 rounded-tr-3xl rounded-br-3xl shadow p-6 space-y-4"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                type="text"
-                placeholder="first name"
-                className="border-b outline-none px-2 py-1"
-                required
-              />
+            <div className="grid grid-cols-1 gap-4 ml-10 mr-10">
+              <p className="text-[#09283B] font-bold text-3xl mt-2 mb-4" data-aos="fade-up" data-aos-delay="500">Send us a message</p>
+
+                <input
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="First Name"
+                  className="border-1 border-[#09283B] shadow-xl rounded-md outline-none px-2 py-1 mb-4 placeholder:text-[#09283B]"
+                  data-aos="fade-up"
+                  data-aos-delay="600"
+                  required
+                />
               <input
                 name="lastName"
                 value={form.lastName}
                 onChange={handleChange}
                 type="text"
-                placeholder="last name"
-                className="border-b outline-none px-2 py-1"
+                placeholder="Last Name"
+                className="border border-[#09283B] shadow-xl rounded-md outline-none px-2 py-1 mb-4 placeholder:text-[#09283B]"
+                data-aos="fade-up"
+                data-aos-delay="700"
+                required
               />
               <input
                 name='email'
                 value={form.email}
                 onChange={handleChange}
                 type="email"
-                placeholder="your email"
-                className="border-b outline-none px-2 py-1"
+                placeholder="Your Email"
+                className="border border-[#09283B] shadow-xl rounded-md outline-none px-2 py-1 mb-4 placeholder:text-[#09283B]"
+                data-aos="fade-up"
+                data-aos-delay="800"
                 required
               />
               <input
@@ -92,53 +142,36 @@ return (
                 value={form.phone}
                 onChange={handleChange}
                 type="tel"
-                placeholder="phone number"
-                className="border-b outline-none px-2 py-1"
+                placeholder="Phone Number"
+                className="border border-[#09283B] shadow-xl rounded-md outline-none px-2 py-1 mb-4 placeholder:text-[#09283B]"
+                data-aos="fade-up"
+                data-aos-delay="900"
+                required
               />
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                placeholder="Message"
+                className="border border-[#09283B] shadow-xl rounded-md outline-none px-2 py-1 mb-4 placeholder:text-[#09283B]"
+                data-aos="fade-up"
+                data-aos-delay="1000"
+                rows="4"
+                required
+              ></textarea>
+
+              <button 
+                type="submit"
+                className=" bg-green-900 hover:bg-[#09283B] text-white py-2 mt-6 rounded transition cursor-pointer" 
+                data-aos="fade-up"
+                data-aos-delay="1100"
+              >
+                Submit Now
+              </button>
             </div>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              placeholder="message"
-              className="w-full border-b outline-none px-2 py-1"
-              rows="4"
-              required
-            ></textarea>
-            <button 
-              type="submit"
-              className="w-full bg-green-800 hover:bg-green-700 text-white py-2 rounded transition"
-            >
-              Submit Now
-            </button>
+            
+            
           </form>
-        </div>
-
-        {/* Right Side - Image */}
-        <div className="relative rounded-b-3xl rounded-t-none md:rounded-l-none md:rounded-r-3xl overflow-hidden">
-          <img
-            src={ContactImage}
-            alt="Contact Wivana"
-            className="w-full md:h-full object-cover"
-          />
-
-          {/* Contact Info Card */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-white shadow-lg rounded-lg p-4 space-y-2 text-gray-700  md:w-auto">
-            <p className="flex items-center gap-2">
-              <MapPin size={40} className="text-green-600 mb-auto" />
-              No. 50/9, B/G/1, Collingwood Housing Scheme, Collingwood Place, Wellawatta, Colombo-6
-
-            </p>
-            <p className="flex items-center gap-2">
-              <Phone size={18} className="text-green-600" />
-              +94 74 261 0334
-            </p>
-            <p className="flex items-center gap-2">
-              <Mail size={18} className="text-green-600" />
-              ayurvedafootcarenewnature@gmail.com
-            </p>
-          </div>
-         </div>
       </div>
     </section>
   );

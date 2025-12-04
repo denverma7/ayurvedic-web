@@ -14,18 +14,20 @@ export default function WhyChooseUs({
     backgroundSize: "cover",
     backgroundPosition: "center",
   }}
+  data-aos="fade-up"
+  data-aos-delay="300"
 >
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center" data-aos="fade-up" data-aos-delay="400">
         {/* Subtitle */}
-        <p className="text-sm uppercase tracking-widest mb-2">
+        <p className="text-sm uppercase tracking-widest mb-2" data-aos="fade-up" data-aos-delay="500">
           {subtitle}
         </p>
         {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-12">
+        <h2 className="text-4xl md:text-5xl font-serif font-bold mb-12" data-aos="fade-up" data-aos-delay="600">
           {title}
         </h2>
 
@@ -59,15 +61,15 @@ export default function WhyChooseUs({
               className="flex flex-col items-center text-center px-4 py-6"
             >
               {/* Icon */}
-              <div className="text-4xl mb-4">
+              <div className="text-4xl mb-4" data-aos="fade-up" data-aos-delay="700">
                 {feature.icon}
               </div>
               {/* Title */}
-              <h3 className="text-xl font-semibold mb-2">
+              <h3 className="text-xl font-semibold mb-2" data-aos="fade-up" data-aos-delay="800">
                 {feature.title}
               </h3>
               {/* Description */}
-              <p className="text-gray-200 text-sm leading-relaxed">
+              <p className="text-gray-200 text-sm leading-relaxed" data-aos="fade-up" data-aos-delay="900">
                 {feature.description}
               </p>
             </div>

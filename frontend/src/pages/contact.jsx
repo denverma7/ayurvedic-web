@@ -26,7 +26,7 @@ const contact = () => {
       <div data-aos="fade-down">
         <HeroSection 
           title="Contact Us"
-          breadcrumb={["Home", "Contact"]}
+          breadcrumb={["Home", "Contact us"]}
           backgroundImage={HeroImage}
         />
       </div>

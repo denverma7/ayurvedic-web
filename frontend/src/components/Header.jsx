@@ -59,10 +59,10 @@ const Header = () => {
         </div>
         <div className="hidden md:flex space-x-8 font-sans">
           <NavLink to="/" className={getLinkClass} end>Home</NavLink>
-          <NavLink to="/about" className={getLinkClass}>About</NavLink>
+          <NavLink to="/about" className={getLinkClass}>About Us</NavLink>
           <NavLink to="/treatments" className={getLinkClass}>Treatments</NavLink>
           
-          <NavLink to="/contact" className={getLinkClass}>Contact</NavLink>
+          <NavLink to="/contact" className={getLinkClass}>Contact Us</NavLink>
         </div>
         <div>
           <a

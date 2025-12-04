@@ -11,7 +11,7 @@ import Service3 from "../../assets/images/face-massage.png";
 import Service4 from "../../assets/images/nasya.png";
 import Service5 from "../../assets/images/shirod.png";
 import Service6 from "../../assets/images/vasti.png";
-import Service7 from "../../assets/images/Fish3.png";
+import Service7 from "../../assets/images/Fish6.png";
 import Service8 from "../../assets/images/steamn.png";
 import Service9 from "../../assets/images/pedicure.png";
 import Service10 from "../../assets/images/manicure.png";

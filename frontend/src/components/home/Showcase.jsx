@@ -4,7 +4,7 @@ import Image1 from '../../assets/Images/showcase/show_3.png'
 import Image2 from '../../assets/Images/showcase/show-case-2.png'
 import Image4 from '../../assets/Images/showcase/show_2.png'
 import Image3 from '../../assets/Images/showcase/show_4.png'
-import Image5 from '../../assets/Images/showcase/show_5.png'
+import Image5 from '../../assets/Images/showcase/show_6.png'
 
 const Showcase = () => {
   return (

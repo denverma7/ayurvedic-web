@@ -37,7 +37,7 @@ const Hero = () => {
       <main className="container mx-auto py-2 md:py-20" data-aos="fade-up">
         <div className="flex flex-col items-start">
           <div className='pl-4 md:pl-40 text-white md:mt-20' data-aos="fade-up" data-aos-delay="200">
-              <p className='flex text-[14px] md:text-[16px]'><FiPlusCircle className=' w-5 h-5'/>&nbsp; NATURE FOOT CARE AND AYURVEDIC WELLNESS</p>
+              <p className='flex text-[14px] md:text-[16px]'><FiPlusCircle className=' w-5 h-5'/>&nbsp; FOOT CARE, SOUL CARE</p>
           </div>
 
           <div className="pl-4 md:pl-40" data-aos="flip-up" data-aos-delay="600">
